@@ -1,18 +1,39 @@
 public class Library {
     private Book[] arrayBooks;
+    private int size;
 
-    public Library(int lenghtArray) {
-        Book[] array = new Book[lenghtArray];
-        this.arrayBooks = array;
+    public Library(int lengthArray) {
+        arrayBooks = new Book[lengthArray];
+       }
+
+    public String toString() {
+        String tem = "";
+        for (int i = 0; i <= arrayBooks.length-1; i++) {
+
+                if (arrayBooks[i] == null) {
+                    continue;
+                }
+                else {
+                    if(i==0){tem = arrayBooks[i].toString();}
+                    else {  tem = tem+ "\n" + arrayBooks[i].toString(); }
+                }
+        }
+        return tem ;
     }
 
-    public static Book[] addNewBookInArray(Book[] arrayBooks, Book newBook) {
-        Book[] arrayBooksNew = new Book[arrayBooks.length+1];
-        for (int i = 0; i < arrayBooks.length; i++) {
-            arrayBooksNew[i] = arrayBooks[i];
-        }
-        arrayBooksNew[arrayBooksNew.length-1] = newBook;
-        return arrayBooksNew;
+    public boolean equals(Book[] other){
+        //if (this.getClass() != other.getClass()) {
+       //    return false;
+       // }
+        Book [] c2 = (Book[]) other;
+        return arrayBooks.equals(c2);
+    }
+    public int hashCode() {
+        return java.util.Objects.hash(arrayBooks);
+    }
+
+    public void addNewBookInArray( Book newBook) {
+        arrayBooks[size++] = newBook;
     }
 
     public static void printInformationAboutBook(String title,   Book[] arrayBook ) {
